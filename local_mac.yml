@@ -8,6 +8,12 @@
   # become: "{{ False if ansible_os_family == 'Darwin' else True }}"
 
   tasks:
+  - name: install network tools
+    community.general.homebrew:
+      name: iperf3
+      state: present
+      update_homebrew: yes
+
   - name: install packages
     community.general.homebrew:
       name:  
@@ -35,5 +41,6 @@
 
   - name: install network tools
     community.general.homebrew:
-      name: 
-        - iperf3
+      name: iperf3
+      state: present
+      update_homebrew: yes
