@@ -1,11 +1,11 @@
 ---
 - hosts: localhost
   connection: local
-  become: True
+  become: false 
   # This doesn't - the variable is undefined
-  become: "{{ False if ansible_pkg_mgr == 'brew' else True }}"
+  # become: "{{ False if ansible_pkg_mgr == 'brew' else True }}"
   # Nor does this - also undefined
-  become: "{{ False if ansible_os_family == 'Darwin' else True }}"
+  # become: "{{ False if ansible_os_family == 'Darwin' else True }}"
 
   tasks:
   - name: install packages
