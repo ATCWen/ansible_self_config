@@ -38,9 +38,3 @@
         - mcgimp
         - google-chrome
 
-
-  - name: install network tools
-    community.general.homebrew:
-      name: iperf3
-      state: present
-      update_homebrew: yes
