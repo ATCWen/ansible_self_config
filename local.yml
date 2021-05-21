@@ -1,9 +1,9 @@
 ---
 - hosts: localhost
   connection: local
-  become: true
+  become: false
 
   tasks:
-  - name: install htop
+  - name: install macdown
     package:
-      name: htop
+      name: macdown
