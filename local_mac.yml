@@ -1,13 +1,39 @@
 ---
 - hosts: localhost
   connection: local
-  become: false
+  become: True
+  # This doesn't - the variable is undefined
+  become: "{{ False if ansible_pkg_mgr == 'brew' else True }}"
+  # Nor does this - also undefined
+  become: "{{ False if ansible_os_family == 'Darwin' else True }}"
 
   tasks:
-  - name: install mac desktop by default
-    package:
+  - name: install packages
+    community.general.homebrew:
+      name:  
+        - nally  # example
+        - iina  
+        - mcbopomofo  
+        - blackhole-16ch
+        - blackhole-2ch
+        - openvpn-connect  
+        - youtube-dl
+        - qlmarkdown
+        - ansible
+      # - openvanilla # traditional chinese input
+
+  - name: install applications
+    community.general.homebrew:
       name: 
-        - macdown
-        - macdown
-        - macdown
-        - macdown
+        - calibre
+        - digikam
+        - skype
+        - eqmac
+        - mcgimp
+        - google-chrome
+
+
+  - name: install network tools
+    community.general.homebrew:
+      name: 
+        - iperf3
