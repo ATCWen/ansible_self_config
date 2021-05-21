@@ -14,11 +14,11 @@
       state: present
       update_homebrew: yes
 
-  - name: install packages
+  - name: install general packages
     community.general.homebrew:
       name:  
-        - nally  # example
-        - iina  
+        - nally
+        - iina
         - mcbopomofo  
         - blackhole-16ch
         - blackhole-2ch
