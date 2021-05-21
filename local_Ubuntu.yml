@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+  - name: install packages
+    package:
+      name: 
+        - dconf-cli
+  -name: add ansible user
+   user:
+     name: velociraptor
+     system: yes
+  -name: set up sudo for ansible user
+   copy:
+     src: files/sudoer_velociraptor
+     dest: /etc/sudoers.d/velociraptor
+     owner: root
+     group: root
+     mode: 0440
+  -name: add ansible-pull cron job
+   cron:
+     name: user velociraptor runs ansible auto-provision
+     user: velociraptor
+     minute: "*/10"
+     job: ansible-pull -o -U https://github.com/ATCWen/ansible_self_config.git local_Ubuntu.yml
