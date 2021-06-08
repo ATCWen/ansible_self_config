@@ -7,7 +7,7 @@
   - name: install packages
     package:
       name: 
-        - dconf-cli  # example
+        - htop  # example
   - name: Update and upgrade apt packages
     apt:
       upgrade: yes
